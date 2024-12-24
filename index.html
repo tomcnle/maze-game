@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Game</title>
+    <style>
+        canvas { border: 2px solid #000; display: block; margin: 20px auto; }
+        body { text-align: center; font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+    <h1 id="gameTitle">Maze Game</h1>
+    <p>Enter your secret code to start:</p>
+    <input type="text" id="playerName" placeholder="Your Name" />
+    <button id="startButton">Start Game</button>
+    <p id="timer">Time Remaining: 30 seconds</p>
+    <p id="gameMessage"></p>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    
+    <div id="controls">
+    <button id="upButton">↑</button>
+    <div>
+        <button id="leftButton">←</button>
+        <button id="downButton">↓</button>
+        <button id="rightButton">→</button>
+    </div>
+    <script src="script.js"></script>
+</div>
+</body>
+</html>
