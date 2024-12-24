@@ -4,7 +4,7 @@ const playerNameInput = document.getElementById('playerName');
 const startButton = document.getElementById('startButton');
 
 // Timer setup
-let timeRemaining = 25; // Time in seconds
+let timeRemaining = 30; // Time in seconds
 let timerInterval = null;
 
 // Grid setup
@@ -203,7 +203,7 @@ function disableButtons() {
 function init() {
     document.getElementById('gameMessage').textContent = '';
     player = { x: 0, y: 0 }; // Reset player position
-    timeRemaining = 25; // Reset timer
+    timeRemaining = 30; // Reset timer
 
     ensureReachableMaze(); // Generate a maze and ensure it's solvable
     updateCanvas();
