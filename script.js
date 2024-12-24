@@ -129,9 +129,9 @@ function checkWin() {
         document.getElementById('gameMessage').textContent = winMessage;
         clearInterval(timerInterval); // Stop the timer
         document.removeEventListener('keydown', movePlayer);
+        disableButtons(); // Disable on-screen buttons
     }
 }
-
 
 // Move the player
 function movePlayer(e) {
@@ -172,10 +172,31 @@ function updateTimer() {
     if (timeRemaining <= 0) {
         clearInterval(timerInterval); // Stop the timer
         document.getElementById('gameMessage').textContent = `Time’s Up, ${playerName}. You Lose! Try Again.`;
-        document.removeEventListener('keydown', movePlayer);
+        document.removeEventListener('keydown', movePlayer); // Disable keyboard controls
+        disableButtons(); // Disable on-screen buttons
     }
 
     timeRemaining -= 1;
+}
+
+// Enable and disable buttons
+const moveUp = () => handleButtonPress('up');
+const moveDown = () => handleButtonPress('down');
+const moveLeft = () => handleButtonPress('left');
+const moveRight = () => handleButtonPress('right');
+
+function enableButtons() {
+    document.getElementById('upButton').addEventListener('click', moveUp);
+    document.getElementById('downButton').addEventListener('click', moveDown);
+    document.getElementById('leftButton').addEventListener('click', moveLeft);
+    document.getElementById('rightButton').addEventListener('click', moveRight);
+}
+
+function disableButtons() {
+    document.getElementById('upButton').removeEventListener('click', moveUp);
+    document.getElementById('downButton').removeEventListener('click', moveDown);
+    document.getElementById('leftButton').removeEventListener('click', moveLeft);
+    document.getElementById('rightButton').removeEventListener('click', moveRight);
 }
 
 // Initialize the game
@@ -192,6 +213,7 @@ function init() {
     timerInterval = setInterval(updateTimer, 1000);
 
     document.addEventListener('keydown', movePlayer);
+    enableButtons(); // Enable on-screen buttons
 }
 
 const gameTitle = document.getElementById('gameTitle'); // Get the H1 element
@@ -201,11 +223,10 @@ const specialWinMessages = {
     "Artie": "You've won a Ben & Jerry's icecream! Collect your prize from Mum and Dad",
     "Hugh": "You've won a Ben & Jerry's icecream! Collect your prize from Mum and Dad",
     "Tully": "You've won $20 v-bucks! Collect your prize from Mum and Dad",
-    "Ollie": "You've won an age appropriate treat! Collect your prize from Mum and Dad",
+    "Ollie": "You've won an age-appropriate treat! Collect your prize from Mum and Dad",
     "Orla": "You've won a Ben & Jerry's icecream! Collect your prize from Mum and Dad",
     "Riley": "You've won a Ben & Jerry's icecream! Collect your prize from Mum and Dad",
 };
-
 
 // Start the game when the button is clicked
 startButton.addEventListener('click', () => {
@@ -214,7 +235,6 @@ startButton.addEventListener('click', () => {
     gameTitle.textContent = `${playerName}'s Maze`; // Change the H1 title on the page
     init();
 });
-
 
 // Function to handle movement based on button presses
 function handleButtonPress(direction) {
@@ -238,10 +258,3 @@ function handleButtonPress(direction) {
     updateCanvas();
     checkWin();
 }
-
-// Add event listeners for the on-screen buttons
-document.getElementById('upButton').addEventListener('click', () => handleButtonPress('up'));
-document.getElementById('downButton').addEventListener('click', () => handleButtonPress('down'));
-document.getElementById('leftButton').addEventListener('click', () => handleButtonPress('left'));
-document.getElementById('rightButton').addEventListener('click', () => handleButtonPress('right'));
-
